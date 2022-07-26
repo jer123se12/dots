@@ -51,7 +51,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop demu="dmenu -nf '#8A8A8A' -nb '#000000' -sb '#007700' -sf '#FFFFFF' -fn 'monospace-10'"
 
 # change focus
 bindsym $mod+j focus left
@@ -178,10 +178,21 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+  colors {
+    background #000000
+    statusline #00FF00
+    separator  #FF0000
+
+    focused_workspace  #999999 #009900 #FFFFFF
+    active_workspace   #000000 #222222 #FFFFFF
+    inactive_workspace #000000 #000000 #888888
+    urgent_workspace   #2F343A #FF0000 #FFFFFF
+    binding_mode       #FFFFFF #FF0000 #FFFFFF
+  }
 }
 for_window [class=".*"] border pixel 5
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
-exec --no-startup-id compton --xrender-sync-fence --inactive-opacity 0.8 --inactive-dim 0.8
+exec --no-startup-idpicom --xrender-sync-fence --inactive-opacity 0.8 --inactive-dim 0.8 -f -O0.1 -I0.1 -D20 
 gaps inner 10
 gaps outer 2
 client.focused 			#00ff00 #000000 #00ff00 #004400 #00cc00
