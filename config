@@ -179,8 +179,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-for_window [class=".*"] border pixel 3
-hide_edge_borders smart
+for_window [class=".*"] border pixel 5
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
 exec --no-startup-id compton --xrender-sync-fence --inactive-opacity 0.8 --inactive-dim 0.8
 gaps inner 10
