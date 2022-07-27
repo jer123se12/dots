@@ -198,3 +198,5 @@ gaps outer 2
 client.focused 			#00ff00 #000000 #00ff00 #004400 #00cc00
 client.unfocused 		#00ff00 #000000 #00ff00 #ffffff #ffffff
 client.focused_inactive 	#00ff00 #000000 #00ff00 #ffffff #ffffff
+	
+exec --no-startup-id /home/jer123se12/github/i3-alternating-layout/alternating_layouts.py
