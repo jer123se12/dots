@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -177,26 +177,37 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+	mode hide
+	i3bar_command i3bar --transparency	
+	position top
+        status_command i3status --config /home/jer123se12/.config/i3/i3status.conf
   colors {
-    background #000000
-    statusline #00FF00
-    separator  #FF0000
+    background #00000077
+    statusline #00FF0099
+    separator  #ffffff33
 
-    focused_workspace  #999999 #009900 #FFFFFF
-    active_workspace   #000000 #222222 #FFFFFF
-    inactive_workspace #000000 #000000 #888888
-    urgent_workspace   #2F343A #FF0000 #FFFFFF
-    binding_mode       #FFFFFF #FF0000 #FFFFFF
+    focused_workspace   #00ff0055 #00ff0055 #00000099
+    active_workspace    #22222255 #22222255 #00000099
+    inactive_workspace  #00000055 #00000055 #88888899
+    urgent_workspace    #FF000055 #FF000055 #FFFFFF99
+    binding_mode        #FF000055 #FF000055 #FFFFFF99
   }
 }
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 10
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
 exec --no-startup-idpicom --xrender-sync-fence --inactive-opacity 0.8 --inactive-dim 0.8 -f -O0.1 -I0.1 -D20 
-gaps inner 10
-gaps outer 2
-client.focused 			#00ff00 #000000 #00ff00 #004400 #00cc00
+gaps inner 32
+gaps outer 10
+client.focused 			#00ff00 #000000 #00ff00 #bbbbbb #bbbbbb
 client.unfocused 		#00ff00 #000000 #00ff00 #ffffff #ffffff
 client.focused_inactive 	#00ff00 #000000 #00ff00 #ffffff #ffffff
-	
+
 exec --no-startup-id /home/jer123se12/github/i3-alternating-layout/alternating_layouts.py
+
+exec_always sudo ifconfig enxacde48001122 down
+
+#media
+bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound 
+bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
+
