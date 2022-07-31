@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -51,8 +51,8 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop demu="dmenu -nf '#8A8A8A' -nb '#000000' -sb '#007700' -sf '#FFFFFF' -fn 'monospace-10'"
-
+bindsym $mod+space exec --no-startup-id rofi -show drun 
+bindsym $mod+g exec --no-startup-id rofi -show window
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -95,7 +95,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -180,29 +180,31 @@ bar {
 	mode hide
 	i3bar_command i3bar --transparency	
 	position top
-        status_command i3status --config /home/jer123se12/.config/i3/i3status.conf
+        status_command i3status --config ~/.config/i3/i3status.conf
+modifier Mod1
   colors {
-    background #00000077
+    background #00000055
     statusline #00FF0099
     separator  #ffffff33
 
-    focused_workspace   #00ff0055 #00ff0055 #00000099
-    active_workspace    #22222255 #22222255 #00000099
-    inactive_workspace  #00000055 #00000055 #88888899
-    urgent_workspace    #FF000055 #FF000055 #FFFFFF99
-    binding_mode        #FF000055 #FF000055 #FFFFFF99
+    focused_workspace   #00ff00aa #00ff00aa #000000aa
+    active_workspace    #222222aa #222222aa #000000aa
+    inactive_workspace  #00000055 #00000055 #ffffffaa
+    urgent_workspace    #FF0000aa #FF0000aa #FFFFFFaa
+    binding_mode        #FF0000aa #FF0000aa #FFFFFFaa
   }
 }
-for_window [class=".*"] border pixel 10
+
+for_window [class=".*"] border pixel 1
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
-exec --no-startup-idpicom --xrender-sync-fence --inactive-opacity 0.8 --inactive-dim 0.8 -f -O0.1 -I0.1 -D20 
+exec --no-startup-id picom --config ~/.config/i3/picom.conf
 gaps inner 32
 gaps outer 10
-client.focused 			#00ff00 #000000 #00ff00 #bbbbbb #bbbbbb
-client.unfocused 		#00ff00 #000000 #00ff00 #ffffff #ffffff
-client.focused_inactive 	#00ff00 #000000 #00ff00 #ffffff #ffffff
+client.focused 			#00ff00 #000000 #00ff00 #88888800 #ffffff99
+client.unfocused 		#00ff00 #000000 #00ff00 #555555 #55555500
+client.focused_inactive 	#00ff00 #000000 #00ff00 #555555 #555555
 
-exec --no-startup-id /home/jer123se12/github/i3-alternating-layout/alternating_layouts.py
+exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 
 exec_always sudo ifconfig enxacde48001122 down
 
