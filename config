@@ -149,27 +149,27 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+	bindsym j resize shrink width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym l resize shrink height 10 px or 10 ppt
+		bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+# back to normal: Enter or Escape or $mod+r
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+		bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -178,31 +178,45 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	mode hide
-	i3bar_command i3bar --transparency	
-	position top
-        status_command i3status --config ~/.config/i3/i3status.conf
-modifier Mod1
-  colors {
-    background #00000055
-    statusline #00FF0099
-    separator  #ffffff33
+		i3bar_command i3bar --transparency	
+		position top
+		tray_output none
+		modifier Mod1
+		tray_padding 0
+		colors {
+			background #00000000
+				statusline #00FF0099
+				separator  #ffffff33
 
-    focused_workspace   #00ff00aa #00ff00aa #000000aa
-    active_workspace    #222222aa #222222aa #000000aa
-    inactive_workspace  #00000055 #00000055 #ffffffaa
-    urgent_workspace    #FF0000aa #FF0000aa #FFFFFFaa
-    binding_mode        #FF0000aa #FF0000aa #FFFFFFaa
-  }
+				focused_workspace   #00ff00aa #00ff00aa #000000aa
+				active_workspace    #222222aa #222222aa #000000aa
+				inactive_workspace  #000000 #000000 #ffffffaa
+				urgent_workspace    #FF0000aa #FF0000aa #FFFFFFaa
+				binding_mode        #FF0000aa #FF0000aa #FFFFFFaa
+		}
+}
+bar {
+font pango:DejaVu Sans Mono 12
+	position bottom
+		workspace_buttons no
+		i3bar_command i3bar --transparency	
+		status_command i3status --config ~/.config/i3/i3status_bottom.conf
+		tray_padding 0
+		colors{
+			background #00000099
+				statusline #ffffff
+				separator  #ffffff33
+		}
 }
 
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 5
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
 exec --no-startup-id picom --config ~/.config/i3/picom.conf
 gaps inner 32
 gaps outer 10
-client.focused 			#00ff00 #000000 #00ff00 #88888800 #ffffff99
-client.unfocused 		#00ff00 #000000 #00ff00 #555555 #55555500
-client.focused_inactive 	#00ff00 #000000 #00ff00 #555555 #555555
+client.focused 			#00ff00 #00000000 #00ff00 #888888 #ffffff
+client.unfocused 		#00ff00 #00000000 #00ff00 #555555 #55555500
+client.focused_inactive 	#00ff00 #00000000 #00ff00 #555555 #555555
 
 exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 
