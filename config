@@ -204,7 +204,7 @@ font pango:terminus 14
 		status_command i3status --config ~/.config/i3/i3status_bottom.conf
 		tray_padding 0
 		colors{
-			background #00000099
+			background #00000033
 				statusline #00FF0099
 				separator  #ffffff33
 		}
@@ -212,7 +212,7 @@ font pango:terminus 14
 
 for_window [class=".*"] border pixel 0
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
-exec --no-startup-id picom --config ~/.config/i3/picom.conf
+exec --no-startup-id picom --experimental-backends --config ~/.config/i3/picom.conf
 gaps inner 32
 gaps outer 10
 client.focused 			#00ff00 #00000000 #00ff00 #888888 #ffffff
