@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -105,16 +105,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1:Main"
+set $ws2 "2:I"
+set $ws3 "3:II"
+set $ws4 "4:III"
+set $ws5 "5:IV"
+set $ws6 "6:V"
+set $ws7 "7:VI"
+set $ws8 "8:VII"
+set $ws9 "9:VIII"
+set $ws10 "10:IX"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -177,11 +177,12 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+strip_workspace_numbers yes
 	mode hide
 		i3bar_command i3bar --transparency	
 		position top
 		tray_output none
-		modifier Mod1
+		modifier Mod4
 		tray_padding 0
 		colors {
 			background #00000000
@@ -196,22 +197,22 @@ bar {
 		}
 }
 bar {
-font pango:DejaVu Sans Mono 12
+font pango:terminus 14
 	position bottom
 		workspace_buttons no
 		i3bar_command i3bar --transparency	
 		status_command i3status --config ~/.config/i3/i3status_bottom.conf
 		tray_padding 0
 		colors{
-			background #00000099
-				statusline #ffffff
+			background #00000033
+				statusline #00FF0099
 				separator  #ffffff33
 		}
 }
 
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 0
 exec --no-startup-id feh --randomize --bg-scale ~/bg/*
-exec --no-startup-id picom --config ~/.config/i3/picom.conf
+exec --no-startup-id picom --experimental-backends --config ~/.config/i3/picom.conf
 gaps inner 32
 gaps outer 10
 client.focused 			#00ff00 #00000000 #00ff00 #888888 #ffffff
