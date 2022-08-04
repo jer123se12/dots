@@ -226,4 +226,5 @@ exec_always sudo ifconfig enxacde48001122 down
 bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound 
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
-
+bindsym $mod+Tab exec i3 workspace next
+bindsym $mod+Shift+Tab exec i3 workspace prev
