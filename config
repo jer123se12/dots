@@ -181,7 +181,7 @@ set $D1 #bec8d1
 set $D2 #373b3e
 set $SO #e12885
 bar {
-strip_workspace_numbers yes
+	strip_workspace_numbers yes
 	mode hide
 		i3bar_command i3bar --transparency	
 		position top
@@ -217,7 +217,7 @@ font pango:terminus 14
 }
 
 for_window [class=".*"] border pixel 10
-#exec_always --no-startup-id feh --randomize --bg-scale ~/bg/*
+exec_always --no-startup-id feh --randomize --bg-scale ~/bg/*
 exec --no-startup-id ~/github/rain/build/rain
 #gaps inner 32
 #gaps outer 10
@@ -235,3 +235,4 @@ bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% 
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
 bindsym $mod+Tab exec i3 workspace next
 bindsym $mod+Shift+Tab exec i3 workspace prev
+exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
