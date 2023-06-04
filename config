@@ -236,3 +236,6 @@ bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% 
 bindsym $mod+Tab exec i3 workspace next
 bindsym $mod+Shift+Tab exec i3 workspace prev
 exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
+exec xrandr --dpi 150
+exec_always bash ~/github/i3-animated-background/scripts/loop_pngs.sh cat/ 0.05
+exec nm-applet
