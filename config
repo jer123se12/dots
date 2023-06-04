@@ -217,7 +217,6 @@ font pango:terminus 14
 }
 
 for_window [class=".*"] border pixel 10
-exec_always --no-startup-id feh --randomize --bg-scale ~/bg/*
 exec --no-startup-id ~/github/rain/build/rain
 #gaps inner 32
 #gaps outer 10
@@ -237,5 +236,5 @@ bindsym $mod+Tab exec i3 workspace next
 bindsym $mod+Shift+Tab exec i3 workspace prev
 exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec xrandr --dpi 150
-exec_always bash ~/github/i3-animated-background/scripts/loop_pngs.sh cat/ 0.05
+exec bash ~/github/i3-animated-background/scripts/loop_pngs.sh ~/github/i3-animated-background/cat/ 0.05
 exec nm-applet
