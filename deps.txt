@@ -1,0 +1,10 @@
+echo "installing things now"
+sudo apt -qq install -y feh picom rofi imagemagick gh git python3-pip
+echo "Installed! XD"
+gh auth login
+cd ~/
+mkdir github
+cd github
+git clone https://github.com/sdaveas/i3-animated-background.git
+git clone https://github.com/olemartinorg/i3-alternating-layout
+ 
