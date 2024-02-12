@@ -216,8 +216,8 @@ font pango:terminus 14
 		}
 }
 
-for_window [class=".*"] border pixel 10
-exec_always --no-startup-id feh --randomize --bg-scale ~/bg/*
+for_window [class=".*"] border pixel 0
+exec_always --no-startup-id feh --randomize --bg-fill --no-xinerama ~/bg/*
 exec --no-startup-id ~/github/rain/build/rain
 #gaps inner 32
 #gaps outer 10
@@ -236,3 +236,6 @@ bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% 
 bindsym $mod+Tab exec i3 workspace next
 bindsym $mod+Shift+Tab exec i3 workspace prev
 exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
+exec_always load-module module-equalizer-sink
+exec_always load-module module-dbus-protocol
+
