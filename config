@@ -127,6 +127,22 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+# assign workspace to monitors
+set $monitor_left "DisplayPort-2"
+set $monitor_right "HDMI-1-1"
+
+#assign workspace to monitor
+workspace $ws1 output $monitor_left
+workspace $ws2 output $monitor_right
+workspace $ws3 output $monitor_left
+workspace $ws4 output $monitor_right
+workspace $ws5 output $monitor_left
+workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_left 
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_left 
+workspace $ws10 output $monitor_right
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -143,6 +159,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+bindsym $mod+n exec ~/.config/i3/toggle_sink.sh
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -172,17 +189,17 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-set $HI1 #86cecb
-set $HI2 #137a7f
-set $D1 #bec8d1
-set $D2 #373b3e
-set $SO #e12885
+set $HI1 #777777
+set $HI2 #303030
+set $D1 #77C999
+set $D2 #060606
+set $SO #5B61D9
 bar {
 	strip_workspace_numbers yes
 	mode hide
+		status_command i3status --config ~/.config/i3/i3status.conf
 		i3bar_command i3bar --transparency	
 		position top
 		tray_output none
@@ -193,8 +210,8 @@ bar {
 				statusline $HI1
 				separator  #ffffff33
 
-				focused_workspace   $HI1 $HI1 $HI2
-				active_workspace    $SO $SO $D2
+				focused_workspace   $SO $SO $D2
+				active_workspace    $HI1 $HI1 $HI2
 				inactive_workspace  $HI2 $HI2 $HI1
 				urgent_workspace    $SO $SO $D2
 				binding_mode        $SO $SO $D2
@@ -216,14 +233,14 @@ font pango:terminus 14
 		}
 }
 
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
 exec_always --no-startup-id feh --randomize --bg-fill --no-xinerama ~/bg/*
 exec --no-startup-id ~/github/rain/build/rain
 #gaps inner 32
 #gaps outer 10
-client.focused 			#00ff00 #00000000 #00ff00 $HI1 $HI2
-client.unfocused 		#00ff00 #00000000 #00ff00 $D1 $D2
-client.focused_inactive 	#00ff00 #00000000 #00ff00 $D1 $D2
+client.focused 			#00ff0000 #00000000 #00ff00 $HI1 $HI1
+client.unfocused 		#00ff0000 #00000000 #00ff00 $HI2 $HI2
+client.focused_inactive 	#00ff0000 #00000000 #00ff00 $000000 $00000000
 exec_always --no-startup-id xsetroot -solid "$D2"
 
 exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
@@ -238,4 +255,3 @@ bindsym $mod+Shift+Tab exec i3 workspace prev
 exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec_always load-module module-equalizer-sink
 exec_always load-module module-dbus-protocol
-
