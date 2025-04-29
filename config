@@ -24,7 +24,8 @@ font pango:Terminus 10
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy -t "enter password to unlock" 
+exec --no-startup-id xss-lock  
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -40,7 +41,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+KP_Enter exec konsole
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -236,7 +238,7 @@ font pango:terminus 14
 	position bottom
 		workspace_buttons no
 		i3bar_command i3bar --transparency	
-		status_command i3status --config ~/.config/i3/i3status_bottom.conf
+		status_command i3status -c ~/.config/i3/i3status_bottom.conf
 		tray_padding 0
 		colors{
 			background $D2
@@ -248,6 +250,9 @@ font pango:terminus 14
 for_window [class=".*"] border pixel 1
 exec_always --no-startup-id feh --randomize --bg-fill --no-xinerama ~/bg/*
 exec --no-startup-id ~/github/rain/build/rain
+exec nm-applet
+exec blueman-applet
+exec bash ~/.screenlayout/autorotate.sh
 #gaps inner 32
 #gaps outer 10
 client.focused 			#00ff0000 #00000000 #00ff00 $HI1 $HI1
@@ -262,8 +267,12 @@ exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound 
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
+bindsym $mod+Shift+p exec brightnessctl s +5%
+bindsym $mod+Shift+o exec brightnessctl s 5%-
+bindsym $mod+Shift+s exec systemctl suspend
 bindsym $mod+Tab exec i3 workspace next
 bindsym $mod+Shift+Tab exec i3 workspace prev
 exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec_always load-module module-equalizer-sink
 exec_always load-module module-dbus-protocol
+exec lxpolkit
