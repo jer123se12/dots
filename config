@@ -52,7 +52,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu_run -nf '#CCCCCC' -nb '#070707' -sb '#CCCCCC' -sf '#070707' -fn 'monospace-14'"
+bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu -nf '#CCCCCC' -nb '#070707' -sb '#CCCCCC' -sf '#070707' -fn 'monospace-10' -i"
 bindsym $mod+g exec --no-startup-id bash /home/me/.config/i3/switcher.sh
 # change focus
 bindsym $mod+h focus left
