@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Terminus 10
+font pango:Noto Sans Display Medium 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -41,8 +41,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+KP_Enter exec konsole
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -53,7 +52,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+space exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu_run -nf '#CCCCCC' -nb '#070707' -sb '#CCCCCC' -sf '#070707' -fn 'monospace-14'"
 bindsym $mod+g exec --no-startup-id bash /home/me/.config/i3/switcher.sh
 # change focus
 bindsym $mod+h focus left
@@ -83,15 +82,16 @@ bindsym $mod+Shift+Right move right
 #bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
+bindsym $mod+s layout stacking
+bindsym $mod+Escape layout default
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -186,79 +186,84 @@ mode "resize" {
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-	bindsym j resize shrink width 10 px or 10 ppt
-		bindsym k resize grow height 10 px or 10 ppt
-		bindsym l resize shrink height 10 px or 10 ppt
-		bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
 
 # same bindings, but for the arrow keys
-		bindsym Left resize shrink width 10 px or 10 ppt
-		bindsym Down resize grow height 10 px or 10 ppt
-		bindsym Up resize shrink height 10 px or 10 ppt
-		bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
 # back to normal: Enter or Escape or $mod+r
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-set $HI1 #777777
-set $HI2 #303030
-set $D1 #77C999
-set $D2 #060606
-set $SO #5B61D9
+set $BB #07070755
+set $WW #CCCCCC
+set $HIL #74D39B
 bar {
-	strip_workspace_numbers yes
-	mode hide
-		status_command i3status --config ~/.config/i3/i3status.conf
-		i3bar_command i3bar --transparency	
-		position top
-		tray_output none
-		modifier $mod
-		tray_padding 0
-		colors {
-			background $HI2
-				statusline $HI1
-				separator  #ffffff33
+    strip_workspace_numbers yes
+        font pango:Noto Sans Display Medium 12
+        position top
+        i3bar_command i3bar --transparency	
+        tray_output primary
+        output nonprimary
+        colors{
+            background $BB
+            statusline $WW
+            separator  $BB
 
-				focused_workspace   $SO $SO $D2
-				active_workspace    $HI1 $HI1 $HI2
-				inactive_workspace  $HI2 $HI2 $HI1
-				urgent_workspace    $SO $SO $D2
-				binding_mode        $SO $SO $D2
-		}
+#                   Border Background Text
+            focused_workspace   $WW $WW $BB
+            active_workspace    $WW $BB $WW
+            inactive_workspace  $BB $BB $WW
+            urgent_workspace    $HIL $HIL $BB
+            binding_mode        $HIL $BB $HIL
+        }
 }
 bar {
-	mode hide
-		modifier $mod
-font pango:terminus 14
-	position bottom
-		workspace_buttons no
-		i3bar_command i3bar --transparency	
-		status_command i3status -c ~/.config/i3/i3status_bottom.conf
-		tray_padding 0
-		colors{
-			background $D2
-				statusline $SO
-				separator  $HI1
-		}
+    strip_workspace_numbers yes
+        font pango:Noto Sans Display Medium 12
+        position top
+        i3bar_command i3bar --transparency	
+        status_command i3status -c ~/.config/i3/i3status_bottom.conf
+        tray_padding 1
+        tray_output primary
+        output primary
+        separator_symbol " "
+        colors{
+            background $BB
+            statusline $WW
+            separator  $BB
+
+#                   Border Background Text
+            focused_workspace   $WW $WW $BB
+            active_workspace    $WW $BB $WW
+            inactive_workspace  $BB $BB $WW
+            urgent_workspace    $HIL $HIL $BB
+            binding_mode        $HIL $BB $HIL
+        }
 }
 
-for_window [class=".*"] border pixel 1
-exec_always --no-startup-id feh --randomize --bg-fill --no-xinerama ~/bg/*
-exec nm-applet
-exec blueman-applet
-#gaps inner 32
-#gaps outer 10
-client.focused 			#00ff0000 #00000000 #00ff00 $HI1 $HI1
-client.unfocused 		#00ff0000 #00000000 #00ff00 $HI2 $HI2
-client.focused_inactive 	#00ff0000 #00000000 #00ff00 $000000 $00000000
-exec_always --no-startup-id xsetroot -solid "$D2"
+for_window [class=".*"] border pixel 2
+exec_always --no-startup-id feh --randomize --bg-center  ~/bg/*
+                                                                exec nm-applet
+                                                                exec blueman-applet
+gaps inner 2
+#                   Border Bacgr text Indicator Child B
+client.focused 			$WW $WW $BB $HIL $HIL
+client.unfocused 		$BB $BB $WW $BB $BB
+client.focused_inactive $WW $BB $WW $WW $WW	
 
+popup_during_fullscreen smart
 exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 
 
@@ -267,9 +272,10 @@ bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
 bindsym $mod+Shift+s exec ~/.config/i3/screenoff.sh
-bindsym $mod+Tab exec i3 workspace next
-bindsym $mod+Shift+Tab exec i3 workspace prev
-exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
+#exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec_always load-module module-equalizer-sink
 exec_always load-module module-dbus-protocol
 exec lxpolkit
+for_window [class="^firefox" window_role="PictureInPicture"] sticky enable
+for_window [class="^mpv"] sticky enable
+for_window [instance="google-chrome" title="^Netflix"] sticky enable
