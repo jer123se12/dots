@@ -174,7 +174,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-bindsym $mod+n exec ~/.config/i3/toggle_sink.sh
+bindsym $mod+n exec ~/.config/i3/toggle_sink.sh; exec sleep .1 && pkill -SIGRTMIN+10 i3blocks
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -234,7 +235,7 @@ bar {
         font pango:Noto Sans Display Medium 12
         position top
         i3bar_command i3bar --transparency	
-        status_command i3status -c ~/.config/i3/i3status_bottom.conf
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
         tray_padding 1
         tray_output primary
         output primary
@@ -268,9 +269,9 @@ exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 
 
 #media
-bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound 
-bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume
+bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound; exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+Shift+s exec ~/.config/i3/screenoff.sh
 #exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec_always load-module module-equalizer-sink
@@ -279,3 +280,12 @@ exec lxpolkit
 for_window [class="^firefox" window_role="PictureInPicture"] sticky enable
 for_window [class="^mpv"] sticky enable
 for_window [instance="google-chrome" title="^Netflix"] sticky enable
+
+exec --no-startup-id telegram-desktop
+exec --no-startup-id /home/me/Applications/Obsidian-1.8.9.AppImage
+exec guake
+exec firefox
+exec sunshine
+assign [class="TelegramDesktop"] $ws6
+assign [class="obsidian"] $ws4
+assign [class="firefox"] $ws1
