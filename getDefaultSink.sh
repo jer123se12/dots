@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 sink=$(pactl get-default-sink)
 output=""
 if [[ "$sink" == "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra2" ]]; then

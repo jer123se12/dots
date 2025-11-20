@@ -143,20 +143,20 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # assign workspace to monitors
-set $monitor_left "DisplayPort-3"
-set $monitor_right "HDMI-1-1"
-
-#assign workspace to monitor
-workspace $ws1 output $monitor_left
-workspace $ws2 output $monitor_right
-workspace $ws3 output $monitor_left
-workspace $ws4 output $monitor_right
-workspace $ws5 output $monitor_left
-workspace $ws6 output $monitor_right
-workspace $ws7 output $monitor_left 
-workspace $ws8 output $monitor_right
-workspace $ws9 output $monitor_left 
-workspace $ws10 output $monitor_right
+#set $monitor_left "DisplayPort-3"
+#set $monitor_right "HDMI-1-1"
+#
+##assign workspace to monitor
+#workspace $ws1 output $monitor_left
+#workspace $ws2 output $monitor_right
+#workspace $ws3 output $monitor_left
+#workspace $ws4 output $monitor_right
+#workspace $ws5 output $monitor_left
+#workspace $ws6 output $monitor_right
+#workspace $ws7 output $monitor_left 
+#workspace $ws8 output $monitor_right
+#workspace $ws9 output $monitor_left 
+#workspace $ws10 output $monitor_right
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -210,26 +210,26 @@ bindsym $mod+r mode "resize"
 set $BB #07070755
 set $WW #CCCCCC
 set $HIL #74D39B
-bar {
-    strip_workspace_numbers yes
-        font pango:Noto Sans Display Medium 12
-        position top
-        i3bar_command i3bar --transparency	
-        tray_output primary
-        output nonprimary
-        colors{
-            background $BB
-            statusline $WW
-            separator  $BB
-
-#                   Border Background Text
-            focused_workspace   $WW $WW $BB
-            active_workspace    $WW $BB $WW
-            inactive_workspace  $BB $BB $WW
-            urgent_workspace    $HIL $HIL $BB
-            binding_mode        $HIL $BB $HIL
-        }
-}
+#bar {
+#    strip_workspace_numbers yes
+#        font pango:Noto Sans Display Medium 12
+#        position top
+#        i3bar_command i3bar --transparency	
+#        tray_output primary
+#        output nonprimary
+#        colors{
+#            background $BB
+#            statusline $WW
+#            separator  $BB
+#
+##                   Border Background Text
+#            focused_workspace   $WW $WW $BB
+#            active_workspace    $WW $BB $WW
+#            inactive_workspace  $BB $BB $WW
+#            urgent_workspace    $HIL $HIL $BB
+#            binding_mode        $HIL $BB $HIL
+#        }
+#}
 bar {
     strip_workspace_numbers yes
         font pango:Noto Sans Display Medium 12
@@ -237,8 +237,6 @@ bar {
         i3bar_command i3bar --transparency	
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         tray_padding 1
-        tray_output primary
-        output primary
         separator_symbol " "
         colors{
             background $BB
@@ -265,7 +263,6 @@ client.unfocused 		$BB $BB $WW $BB $BB
 client.focused_inactive $WW $BB $WW $WW $WW	
 
 popup_during_fullscreen smart
-exec --no-startup-id ~/github/i3-alternating-layout/alternating_layouts.py
 
 
 #media
@@ -273,19 +270,11 @@ bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+Shift+s exec ~/.config/i3/screenoff.sh
-#exec_always picom --experimental-backends --config ~/.config/i3/picom.conf
 exec_always load-module module-equalizer-sink
 exec_always load-module module-dbus-protocol
-exec lxpolkit
 for_window [class="^firefox" window_role="PictureInPicture"] sticky enable
 for_window [class="^mpv"] sticky enable
 for_window [instance="google-chrome" title="^Netflix"] sticky enable
 
 exec --no-startup-id telegram-desktop
 exec --no-startup-id /home/me/Applications/Obsidian-1.8.9.AppImage
-exec guake
-exec firefox
-exec sunshine
-assign [class="TelegramDesktop"] $ws6
-assign [class="obsidian"] $ws4
-assign [class="firefox"] $ws1
