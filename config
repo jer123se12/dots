@@ -265,7 +265,7 @@ client.focused_inactive $WW $BB $WW $WW $WW
 popup_during_fullscreen smart
 
 #media
-bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound; exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+Shift+p exec --no-startup-id brightnessctl set +5%; exec pkill -SIGRTMIN+10 i3blocks
