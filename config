@@ -253,7 +253,7 @@ bar {
 }
 
 for_window [class=".*"] border pixel 2
-exec_always --no-startup-id feh --randomize --bg-center  ~/bg/*
+exec_always --no-startup-id feh --randomize --bg-scale ~/bg/*
                                                                 exec nm-applet
                                                                 exec blueman-applet
 gaps inner 2
@@ -264,17 +264,14 @@ client.focused_inactive $WW $BB $WW $WW $WW
 
 popup_during_fullscreen smart
 
-
 #media
 bindsym $mod+m exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle # mute sound; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+p exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
 bindsym $mod+o exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% #increase sound volume; exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+Shift+p exec --no-startup-id brightnessctl set +5%
+bindsym $mod+Shift+o exec --no-startup-id brightnessctl set 5%-
 bindsym $mod+Shift+s exec ~/.config/i3/screenoff.sh
-exec_always load-module module-equalizer-sink
-exec_always load-module module-dbus-protocol
 for_window [class="^firefox" window_role="PictureInPicture"] sticky enable
 for_window [class="^mpv"] sticky enable
 for_window [instance="google-chrome" title="^Netflix"] sticky enable
 
-exec --no-startup-id telegram-desktop
-exec --no-startup-id /home/me/Applications/Obsidian-1.8.9.AppImage
